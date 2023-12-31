@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Year Countdown</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #23074d, #cc5333);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      animation: none; /* Disable any background animations */
+    }
+
+    h1 {
+      font-size: 9em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    #countdown {
+      font-size: 3em;
+      padding: 20px;
+      border-radius: 8px;
+      background-image: linear-gradient(to right, #ff758c, #ff7eb3, #8a75ff, #75e6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      display: inline-block;
+      margin-bottom: 50px;
+    }
+
+    #fireworks-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>2024</h1>
+  <div id="countdown"></div>
+  <canvas id="fireworks-canvas"></canvas>
+
+  <script>
+   
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const newYear = new Date(currentTime.getFullYear() + 1, 0, 1); // Assuming the countdown is for the next year
+      const timeDifference = newYear - currentTime;
+
+      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML = `${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
